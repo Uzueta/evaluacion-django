@@ -1,0 +1,52 @@
+body {
+    background-color: rgb(226, 226, 226) !important;
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 40px;
+}
+
+.main-card {
+    margin: 50px 20%;
+}
+
+.clickable-row {
+    cursor: pointer;
+}
+
+footer{
+    color: white;
+    position:absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+}
+
+nav{
+    color: white;
+}
+
+.missing-data{
+    outline: 1px solid red !important;
+    border-radius: 5px !important;
+}
+
+.pagination .page-link {
+    color: #6c757d;
+    background-color: transparent;
+}
+
+.pagination .page-link:hover {
+    color: white;
+    background-color: #6c757d;
+}
+
+.pagination .page-item.active .page-link {
+    color: white;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.checkbox{
+    cursor: default !important;
+}
