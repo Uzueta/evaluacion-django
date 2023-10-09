@@ -29,18 +29,21 @@ function validarFormulario(event) {
     let form_correcto = true;
     let mensaje = "";
 
-    let info = document.getElementsByClassName("required");
-
-    if (!validaCorreo(document.getElementById("cliente_mail").value)) {
-        form_correcto = false;
-        mensaje = "El correo ingresado no es válido";
-    }
+    let btnGuardar = document.getElementById("btnGuardar");
+    btnGuardar.disabled=true;
 
     if (!validaRFC(document.getElementById("cliente_rfc").value)) {
         form_correcto = false;
         mensaje = "El RFC ingresado no es válido";
     }
-
+    
+    if (!validaCorreo(document.getElementById("cliente_mail").value)) {
+        form_correcto = false;
+        mensaje = "El correo ingresado no es válido";
+    }
+    
+    let info = document.getElementsByClassName("required");
+    
     Array.from(info).forEach(element => {
         if (element.name == "cliente_tipo") {
             tipo = document.querySelector("input[type='radio'][name=cliente_tipo]:checked")?.value ?? '';
@@ -60,6 +63,7 @@ function validarFormulario(event) {
     if (!form_correcto) {
         event.preventDefault();
         showToast("warning", mensaje)
+        btnGuardar.disabled=false;
         return false;
     }
 
