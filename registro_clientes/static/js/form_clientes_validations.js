@@ -31,9 +31,14 @@ function validarFormulario(event) {
 
     let info = document.getElementsByClassName("required");
 
-    if (document.getElementById("cliente_rfc").value.length < 13) {
+    if (!validaCorreo(document.getElementById("cliente_mail").value)) {
         form_correcto = false;
-        mensaje = "Se requieren 13 dígitos para el RFC";
+        mensaje = "El correo ingresado no es válido";
+    }
+
+    if (!validaRFC(document.getElementById("cliente_rfc").value)) {
+        form_correcto = false;
+        mensaje = "El RFC ingresado no es válido";
     }
 
     Array.from(info).forEach(element => {
@@ -61,6 +66,24 @@ function validarFormulario(event) {
     return true;
 
 }
+
+function validaCorreo(email) {
+    const emailPattern = /^[a-zA-Z0-9][a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    return emailPattern.test(email);
+}
+
+function validaRFC(rfc) {
+    const rfcPattern = /^[A-Z&Ñ]{3,4}\d{6}[A-V1-9][0-9A-Z][0-9A-Z]$/
+    /*
+       /^[A-Z&Ñ]{3,4} ---> En persona física: 4 letras que representan el nombre; En persona moral: 3 letras que representan la denominación
+       \d{6} ---> En persona física: 6 números que representan la fecha de nacimiento; En persona moral: 6 números que representan la fecha de creación
+       [A-V1-9][0-9A-Z][0-9A-Z]$/ ---> Tres últimos dígitos que representa la homoclave
+    */
+      
+    return rfcPattern.test(rfc)
+}
+
 
 function showToast(icon, title) {
     Toast.fire({
